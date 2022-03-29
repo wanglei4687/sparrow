@@ -1,3 +1,3 @@
 module github.com/wanglei4687/sparrow
 
-go 1.17
+go 1.18
