@@ -1,0 +1,24 @@
+name: golangci lint
+
+on:
+  pull_request:
+    branches:
+      - main
+
+  push:
+    branches:
+      - main
+
+jobs:
+  golangci-lint:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    name: Golangci Lint
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.40.1
+          args: --timeout 10m0s
