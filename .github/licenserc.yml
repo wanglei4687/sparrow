@@ -1,0 +1,17 @@
+header:
+  license:
+    spdx-id: Apache-2.0
+    copyright-owner: Wang Lei
+  paths-ignore:
+    - 'docs/'
+    - '.gitignore'
+    - '.golangci.yml'
+    - '.gitattributes'
+    - '**/*.md'
+    - '.github/'
+    - 'LICENSE'
+    - '.codeenv.yml'
+    - '.circleci'
+    - '**/go.mod'
+    - '**/go.sum'
+  comment: on-failure
