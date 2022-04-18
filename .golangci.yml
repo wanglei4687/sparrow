@@ -1,0 +1,34 @@
+run:
+  deadline: 10m
+
+output:
+  format: json
+  sort-results: true
+
+linters:
+  enable:
+    - revive
+
+issues:
+  exclude-rules:
+  - path: _test\.go
+    linters:
+      - errcheck
+  - linters:
+    - lll
+    source: "^//go:generate "
+  - linters:
+    - staticcheck
+    text: "SA9003:"
+
+linter:
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+  lll:
+    line-length: 120
+    tab-width: 1
+  maintidx:
+    under: 100
+  maligned:
+    suggest-new: true
