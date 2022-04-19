@@ -77,9 +77,9 @@ pull_request_rules:
         add:
           - improvement
 
-  - name: label on CI/CD
+  - name: label on CI
     conditions:
-      - body~=- CI/CD
+      - body~=- CI
     actions:
       label:
         add:
