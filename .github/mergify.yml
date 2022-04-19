@@ -14,9 +14,10 @@ pull_request_rules:
   - name: put bug fix pr to queue with high priority
     conditions:
       - "#approved-reviews-by>=1"
-      - check-success=check
+      - check-success=analyze
+      - check-success=check_license
+      - check-success=golangci_lint
       - label=bugfix
-
     actions:
       queue:
         name: shared_queue
@@ -24,9 +25,10 @@ pull_request_rules:
   - name: put other pr to queue
     conditions:
       - "#approved-reviews-by>=1"
-      - check-success=check
+      - check-success=analyze
+      - check-success=check_license
+      - check-success=golangci_lint
       - label!=bugfix
-
     actions:
       queue:
         name: shared_queue
@@ -42,7 +44,7 @@ pull_request_rules:
           This pull request has merge conflicts that must be resolved before it can be merged. @{{author}} please update it 🙏.
           Try `@mergify update` or update manually.
 
-  - name: Welcome new contributor
+  - name: welcome new contributor
     conditions:
       - author!=Mergify
     actions:
@@ -58,6 +60,7 @@ pull_request_rules:
       label:
         add:
           - feature
+          
   - name: label on Bug Fix
     conditions:
       - body~=- BugFix
@@ -85,15 +88,22 @@ pull_request_rules:
   - name: label on Test
     conditions:
       - body~=- Test
+    actions:
+      label:
+        add:
+          - test
 
   - name: label on Build
     conditions:
       - body~=- Build
+    actions:
+      label:
+        add:
+          - build
 
   - name: label on Documentation
     conditions:
-      - or:
-          - body~=- Documentation
+      - body~=- Documentation
     actions:
       label:
         add:
