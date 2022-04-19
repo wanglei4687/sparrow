@@ -53,7 +53,7 @@ pull_request_rules:
           Thanks for the contribution!
           Please review the labels and make any necessary changes.
 
-  - name: ask me  to review  PR
+  - name: ask owner to review  PR
     conditions:
       - author!=Mergify
     actions:
