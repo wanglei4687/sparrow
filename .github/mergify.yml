@@ -79,11 +79,11 @@ pull_request_rules:
 
   - name: label on CI
     conditions:
-      - body~=- CI
+      - body~=- CI/CD
     actions:
       label:
         add:
-          - ci
+          - ci/cd
 
   - name: label on Test
     conditions:
