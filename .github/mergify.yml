@@ -14,9 +14,10 @@ pull_request_rules:
   - name: put bug fix pr to queue with high priority
     conditions:
       - "#approved-reviews-by>=1"
-      - check-success=check
+      - check-success=analyze
+      - check-success=check_license
+      - check-success=golangci_lint
       - label=bugfix
-
     actions:
       queue:
         name: shared_queue
@@ -24,9 +25,10 @@ pull_request_rules:
   - name: put other pr to queue
     conditions:
       - "#approved-reviews-by>=1"
-      - check-success=check
+      - check-success=analyze
+      - check-success=check_license
+      - check-success=golangci_lint
       - label!=bugfix
-
     actions:
       queue:
         name: shared_queue
@@ -58,6 +60,7 @@ pull_request_rules:
       label:
         add:
           - feature
+
   - name: label on Bug Fix
     conditions:
       - body~=- BugFix
@@ -74,26 +77,33 @@ pull_request_rules:
         add:
           - improvement
 
-  - name: label on CI/CD
+  - name: label on CI
     conditions:
       - body~=- CI/CD
     actions:
       label:
         add:
-          - ci
+          - ci/cd
 
   - name: label on Test
     conditions:
       - body~=- Test
+    actions:
+      label:
+        add:
+          - test
 
   - name: label on Build
     conditions:
       - body~=- Build
+    actions:
+      label:
+        add:
+          - test
 
   - name: label on Documentation
     conditions:
-      - or:
-          - body~=- Documentation
+      - body~=- Documentation
     actions:
       label:
         add:
