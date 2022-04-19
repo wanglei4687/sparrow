@@ -13,7 +13,7 @@ jobs:
   golangci-lint:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    name: Golangci Lint
+    name: golangci_lint
 
     steps:
       - uses: actions/checkout@v3
