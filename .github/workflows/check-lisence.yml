@@ -11,6 +11,7 @@ on:
 jobs:
   check-license:
     runs-on: ubuntu-latest
+    name: check_license
 
     steps:
       - uses: actions/checkout@v3
