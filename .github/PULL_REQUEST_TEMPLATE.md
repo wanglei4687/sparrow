@@ -1,4 +1,4 @@
-What type of PR is that?
+**What type of PR is that?**
 - Feature
 - BugFix
 - Improvement
