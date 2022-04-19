@@ -8,9 +8,12 @@
 - Documentation
 - Other
 
-which issue(s) this PR fixes:
+
+**which issue(s) this PR fixes:**
+
 issue #
 
-Notes:
+**Notes:**
 
-Attach:
+**Attach:**
+

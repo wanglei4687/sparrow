@@ -53,6 +53,14 @@ pull_request_rules:
           Thanks for the contribution!
           Please review the labels and make any necessary changes.
 
+  - name: ask owner to review  PR
+    conditions:
+      - author!=Mergify
+    actions:
+      request_reviews:
+        users:
+          - wanglei4687
+
   - name: label on Feature
     conditions:
       - body~=- Feature
