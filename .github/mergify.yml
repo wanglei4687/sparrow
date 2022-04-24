@@ -63,7 +63,7 @@ pull_request_rules:
 
   - name: label on Feature
     conditions:
-      - body~=- Feature
+      - body~=(?m)- \[(?i)x\] Feature
     actions:
       label:
         add:
@@ -71,15 +71,15 @@ pull_request_rules:
 
   - name: label on Bug Fix
     conditions:
-      - body~=- BugFix
+      - body~=(?m)- \[(?i)x\] Bug
     actions:
       label:
         add:
-          - bugfix
+          - bug
 
   - name: label on Improvement
     conditions:
-      - body~=- Improvement
+      - body~=(?m)^- \[(?i)x\] Improvement
     actions:
       label:
         add:
@@ -87,7 +87,7 @@ pull_request_rules:
 
   - name: label on CI
     conditions:
-      - body~=- CI/CD
+      - body~=(?m)^- \[(?i)x\] CI/CD
     actions:
       label:
         add:
@@ -95,7 +95,7 @@ pull_request_rules:
 
   - name: label on Test
     conditions:
-      - body~=- Test
+      - body~=(?m)^- \[(?i)x\] Test
     actions:
       label:
         add:
@@ -103,15 +103,15 @@ pull_request_rules:
 
   - name: label on Build
     conditions:
-      - body~=- Build
+      - body~=(?m)^- \[(?i)x\] Build
     actions:
       label:
         add:
-          - test
+          - build
 
   - name: label on Documentation
     conditions:
-      - body~=- Documentation
+      - body~=(?m)^- \[(?i)x\] Documentation
     actions:
       label:
         add:
@@ -119,7 +119,7 @@ pull_request_rules:
 
   - name: label on Other
     conditions:
-      - body~=- Other
+      - body~=(?m)- \[(?i)x\] Other
     actions:
       label:
         add:
