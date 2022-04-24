@@ -25,8 +25,6 @@ pull_request_rules:
   - name: put other pr to queue
     conditions:
       - "#approved-reviews-by>=1"
-      # - check-success=check_license
-      # - check-success=golangci_lint
       - label!=bug
     actions:
       queue:
@@ -62,7 +60,7 @@ pull_request_rules:
 
   - name: label on Feature
     conditions:
-      - body~=- [x] Feature
+      - body~=-^\[x\]\sFeature
     actions:
       label:
         add:
@@ -70,7 +68,7 @@ pull_request_rules:
 
   - name: label on Bug Fix
     conditions:
-      - body~=- [x] BUG
+      - body~=-^\[x\]\sBUG
     actions:
       label:
         add:
@@ -78,7 +76,7 @@ pull_request_rules:
 
   - name: label on Improvement
     conditions:
-      - body~=-[x] Improvement
+      - body~=-^\[x\]\sImprovement
     actions:
       label:
         add:
@@ -86,23 +84,23 @@ pull_request_rules:
 
   - name: label on CI
     conditions:
-      - body~=- [x] Test and CI
+      - body~=-^\[x\]\sTest\sand\sCI
     actions:
       label:
         add:
-          - test-ci
+          - test-and-ci
 
   - name: label on code refactoring
     conditions:
-      - body~=- [x] Code Refactoring
+      - body~=-^\[x\]\sCode\sRefactoring
     actions:
       label:
         add:
-          - refactoring
+          - code-refactoring
 
   - name: label on Documentation
     conditions:
-      - body~=- [x] Documentation
+      - body~=-^\[x\]\sDocumentation
     actions:
       label:
         add:
@@ -110,7 +108,7 @@ pull_request_rules:
 
   - name: label on api change
     conditions:
-      - body~=- [x] API-change
+      - body~=-^\[x\]\sAPI-change
     actions:
       label:
         add:
