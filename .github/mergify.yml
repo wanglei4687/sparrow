@@ -25,7 +25,6 @@ pull_request_rules:
   - name: put other pr to queue
     conditions:
       - "#approved-reviews-by>=1"
-      # - check-success=analyze
       # - check-success=check_license
       # - check-success=golangci_lint
       - label!=bug
@@ -43,6 +42,7 @@ pull_request_rules:
         message: |
           This pull request has merge conflicts that must be resolved before it can be merged. @{{author}} please update it 🙏.
           Try `@mergify update` or update manually.
+
   - name: Welcome new contributor
     conditions:
       - author!=Mergify
@@ -51,6 +51,7 @@ pull_request_rules:
         message: |
           Thanks for the contribution!
           Please review the labels and make any necessary changes.
+
   - name: ask owner to review  PR
     conditions:
       - author!=Mergify
@@ -58,7 +59,6 @@ pull_request_rules:
       request_reviews:
         users:
           - wanglei4687
-          - sukki37
 
   - name: label on Feature
     conditions:
