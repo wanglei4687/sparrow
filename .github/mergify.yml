@@ -103,7 +103,7 @@ pull_request_rules:
 
   - name: label on Build
     conditions:
-      - body~=- Build
+      - body~=- build
     actions:
       label:
         add:
