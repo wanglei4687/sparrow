@@ -103,11 +103,11 @@ pull_request_rules:
 
   - name: label on Build
     conditions:
-      - body~=(?m)^\[X\] Build
+      - body~=- build
     actions:
       label:
         add:
-          - test
+          - build
 
   - name: label on Documentation
     conditions:
