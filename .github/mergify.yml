@@ -61,7 +61,7 @@ pull_request_rules:
 
   - name: label on Feature
     conditions:
-      - body~=-^\[x\]\sFeature
+      - body~=-\[x\]\sFeature
     actions:
       label:
         add:
@@ -69,7 +69,7 @@ pull_request_rules:
 
   - name: label on Bug Fix
     conditions:
-      - body~=-^\[x\]\sBUG
+      - body~=-\[x\]\sBUG
     actions:
       label:
         add:
@@ -77,7 +77,7 @@ pull_request_rules:
 
   - name: label on Improvement
     conditions:
-      - body~=-^\[x\]\sImprovement
+      - body~=-\[x\]\sImprovement
     actions:
       label:
         add:
@@ -85,7 +85,7 @@ pull_request_rules:
 
   - name: label on CI
     conditions:
-      - body~=-^\[x\]\sTest\sand\sCI
+      - body~=-\[x\]\sTest\sand\sCI
     actions:
       label:
         add:
@@ -93,7 +93,7 @@ pull_request_rules:
 
   - name: label on code refactoring
     conditions:
-      - body~=-^\[x\]\sCode\sRefactoring
+      - body~=-\[x\]\sCode\sRefactoring
     actions:
       label:
         add:
@@ -101,7 +101,7 @@ pull_request_rules:
 
   - name: label on Documentation
     conditions:
-      - body~=-^\[x\]\sDocumentation
+      - body~=-\[x\]\sDocumentation
     actions:
       label:
         add:
@@ -109,7 +109,7 @@ pull_request_rules:
 
   - name: label on api change
     conditions:
-      - body~=-^\[x\]\sAPI-change
+      - body~=-\[X\]\sAPI-change
     actions:
       label:
         add:
