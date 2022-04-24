@@ -111,7 +111,7 @@ pull_request_rules:
 
   - name: label on Documentation
     conditions:
-      - body~=- Documentation
+      - body~=^-\s\[x\]\s Documentation
     actions:
       label:
         add:
