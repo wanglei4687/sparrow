@@ -5,7 +5,6 @@ queue_rules:
 
       # Must write expected checks explicitly
       # Reference: https://docs.mergify.com/conditions/#validating-all-status-checks
-      # - check-success=analyze
       # - check-success=check_license
       # - check-success=golangci_lint
 
