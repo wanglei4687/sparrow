@@ -1,12 +1,12 @@
 **What type of PR is that?**
-- Feature
-- BugFix
-- Improvement
-- CI/CD
-- Build
-- Test
-- Documentation
-- Other
+
+- [ ] API-change
+- [ ] BUG
+- [ ] Improvement
+- [ ] Documentation
+- [ ] Feature
+- [ ] Test and CI
+- [ ] Code Refactoring
 
 
 **which issue(s) this PR fixes:**
