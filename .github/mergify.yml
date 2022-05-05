@@ -5,20 +5,10 @@ queue_rules:
       - check-success=golangci_lint
 
 pull_request_rules:
-  - name: put bug fix pr to queue with high priority
+  - name: put pr to queue
     conditions:
       - "#approved-reviews-by>=1"
       - label=bug
-    actions:
-      queue:
-        name: shared_queue
-        method: squash
-        priority: high
-
-  - name: put other pr to queue
-    conditions:
-      - "#approved-reviews-by>=1"
-      - label!=bug
     actions:
       queue:
         name: shared_queue
