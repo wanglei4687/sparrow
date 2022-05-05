@@ -1,17 +1,14 @@
 queue_rules:
   - name: shared_queue
     conditions:
-      # Must write expected checks explicitly
-      # Reference: https://docs.mergify.com/conditions/#validating-all-status-checks
-      - check-success=check_license
-      - check-success=golangci_lint
-
+      - "#approved-reviews-by>=1"
 
 pull_request_rules:
   - name: put bug fix pr to queue with high priority
     conditions:
-      - "#approved-reviews-by>=1"
-      - label=bugfix
+      - check-success=check_license
+      - check-success=golangci_lint
+      - label=bug
     actions:
       queue:
         name: shared_queue
@@ -19,8 +16,9 @@ pull_request_rules:
 
   - name: put other pr to queue
     conditions:
-      - "#approved-reviews-by>=1"
-      - label!=bugfix
+      - check-success=check_license
+      - check-success=golangci_lint
+      - label!=bug
     actions:
       queue:
         name: shared_queue
