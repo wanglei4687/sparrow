@@ -1,8 +1,6 @@
 queue_rules:
   - name: shared_queue
     conditions:
-      - "#approved-reviews-by>=1"
-
       # Must write expected checks explicitly
       # Reference: https://docs.mergify.com/conditions/#validating-all-status-checks
       - check-success=check_license
@@ -47,6 +45,19 @@ pull_request_rules:
         message: |
           Thanks for the contribution!
           Please review the labels and make any necessary changes.
+
+  - name: Notify author on queue failure
+    conditions:
+      - 'check-failure=Queue: Embarked in merge train'
+    actions:
+      comment:
+        message: >
+          Hey @{{ author }}, this pull request failed to merge and has been
+          dequeued from the merge train.  If you believe your PR failed in
+          the merge train because of a flaky test, requeue it by commenting
+          with `@mergifyio requeue`.
+          More details can be found on the `Queue: Embarked in merge train`
+          check-run.
 
   - name: ask owner to review  PR
     conditions:
