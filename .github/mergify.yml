@@ -13,6 +13,7 @@ pull_request_rules:
       queue:
         name: shared_queue
         method: squash
+        priority: high
 
   - name: put other pr to queue
     conditions:
