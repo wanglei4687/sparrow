@@ -5,7 +5,6 @@ queue_rules:
 
       # Must write expected checks explicitly
       # Reference: https://docs.mergify.com/conditions/#validating-all-status-checks
-      - check-success=analyze
       - check-success=check_license
       - check-success=golangci_lint
 
@@ -14,7 +13,6 @@ pull_request_rules:
   - name: put bug fix pr to queue with high priority
     conditions:
       - "#approved-reviews-by>=1"
-      - check-success=analyze
       - check-success=check_license
       - check-success=golangci_lint
       - label=bugfix
