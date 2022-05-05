@@ -5,7 +5,6 @@ queue_rules:
 
       # Must write expected checks explicitly
       # Reference: https://docs.mergify.com/conditions/#validating-all-status-checks
-      - check-success=analyze
       - check-success=check_license
       - check-success=golangci_lint
 
@@ -14,27 +13,24 @@ pull_request_rules:
   - name: put bug fix pr to queue with high priority
     conditions:
       - "#approved-reviews-by>=1"
-      - check-success=analyze
       - check-success=check_license
       - check-success=golangci_lint
       - label=bugfix
     actions:
-      commit_message: all-commits
       queue:
         name: shared_queue
+        method: squash
 
   - name: put other pr to queue
     conditions:
       - "#approved-reviews-by>=1"
-      - check-success=analyze
       - check-success=check_license
       - check-success=golangci_lint
       - label!=bugfix
     actions:
-      squash:
-        commit_message: all-commits
       queue:
         name: shared_queue
+        method: squash
 
   # if there is a conflict in a approved PR, ping the author.
   - name: ping author on conflicts
