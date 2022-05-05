@@ -1,46 +1,22 @@
 queue_rules:
   - name: shared_queue
     conditions:
-      - "#approved-reviews-by>=1"
-
-      # Must write expected checks explicitly
-      # Reference: https://docs.mergify.com/conditions/#validating-all-status-checks
-      - check-success=analyze
       - check-success=check_license
       - check-success=golangci_lint
-
 
 pull_request_rules:
-  - name: put bug fix pr to queue with high priority
+  - name: put pr to queue
     conditions:
       - "#approved-reviews-by>=1"
-      - check-success=analyze
-      - check-success=check_license
-      - check-success=golangci_lint
-      - label=bugfix
+      - label=bug
     actions:
-      commit_message: all-commits
       queue:
         name: shared_queue
+        method: squash
 
-  - name: put other pr to queue
-    conditions:
-      - "#approved-reviews-by>=1"
-      - check-success=analyze
-      - check-success=check_license
-      - check-success=golangci_lint
-      - label!=bugfix
-    actions:
-      squash:
-        commit_message: all-commits
-      queue:
-        name: shared_queue
-
-  # if there is a conflict in a approved PR, ping the author.
   - name: ping author on conflicts
     conditions:
       - conflict
-      - "#approved-reviews-by>=1"
     actions:
       comment:
         message: |
@@ -55,6 +31,19 @@ pull_request_rules:
         message: |
           Thanks for the contribution!
           Please review the labels and make any necessary changes.
+
+  - name: Notify author on queue failure
+    conditions:
+      - 'check-failure=Queue: Embarked in merge train'
+    actions:
+      comment:
+        message: >
+          Hey @{{ author }}, this pull request failed to merge and has been
+          dequeued from the merge train.  If you believe your PR failed in
+          the merge train because of a flaky test, requeue it by commenting
+          with `@mergifyio requeue`.
+          More details can be found on the `Queue: Embarked in merge train`
+          check-run.
 
   - name: ask owner to review  PR
     conditions:
