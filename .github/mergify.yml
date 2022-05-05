@@ -1,13 +1,13 @@
 queue_rules:
   - name: shared_queue
     conditions:
-      - "#approved-reviews-by>=1"
+      - check-success=check_license
+      - check-success=golangci_lint
 
 pull_request_rules:
   - name: put bug fix pr to queue with high priority
     conditions:
-      - check-success=check_license
-      - check-success=golangci_lint
+      - "#approved-reviews-by>=1"
       - label=bug
     actions:
       queue:
@@ -17,8 +17,7 @@ pull_request_rules:
 
   - name: put other pr to queue
     conditions:
-      - check-success=check_license
-      - check-success=golangci_lint
+      - "#approved-reviews-by>=1"
       - label!=bug
     actions:
       queue:
