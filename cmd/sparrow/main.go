@@ -14,7 +14,22 @@
 
 package main
 
+import (
+	"log"
+	"time"
+
+	"github.com/getsentry/sentry-go"
+)
 
 func main() {
-	println("hello world")
+	err := sentry.Init(sentry.ClientOptions{
+		Dsn: "https://c8a96ebc9a5e4c7482d0c4cb3369d580@o1034490.ingest.sentry.io/6453088",
+	})
+	if err != nil {
+		log.Fatalf("sentry.Init: %s", err)
+	}
+	// Flush buffered events before the program terminates.
+	defer sentry.Flush(2 * time.Second)
+
+	sentry.CaptureMessage("It works!")
 }
