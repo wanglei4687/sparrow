@@ -16,14 +16,16 @@ package main
 
 import (
 	"log"
+	"os"
 	"time"
 
 	"github.com/getsentry/sentry-go"
 )
 
 func main() {
+	dsn := os.Getenv("SPARROW_DSN")
 	err := sentry.Init(sentry.ClientOptions{
-		Dsn: "https://c8a96ebc9a5e4c7482d0c4cb3369d580@o1034490.ingest.sentry.io/6453088",
+		Dsn: dsn,
 	})
 	if err != nil {
 		log.Fatalf("sentry.Init: %s", err)
