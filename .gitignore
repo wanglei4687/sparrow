@@ -41,3 +41,9 @@ cscope.*
 # Vagrant
 .vagrant
 network_closure.sh
+
+# Go test
+cover.out
+
+# Binary files
+bin/
