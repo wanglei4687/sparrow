@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"time"
@@ -20,5 +21,6 @@ func main() {
 	defer sentry.Flush(2 * time.Second)
 
 	sentry.CaptureMessage("It works!")
+	fmt.Println("test")
 
 }
